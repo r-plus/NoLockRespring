@@ -1,0 +1,4 @@
+#!/bin/sh
+cd /var/mobile/Library/Preferences/
+plutil -key SBLanguageRestart -value true -type bool com.apple.springboard.plist
+

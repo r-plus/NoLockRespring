@@ -1,0 +1,14 @@
+#!/bin/sh
+killall sbsettingsd
+/usr/bin/plutil -create /var/mobile/Library/Preferences/jp.r-plus.nlr.plist
+/usr/bin/plutil -key Enabled -value false -type bool /var/mobile/Library/Preferences/jp.r-plus.nlr.plist
+/bin/chown mobile:mobile /var/mobile/Library/Preferences/jp.r-plus.nlr.plist
+/bin/chown root:wheel /var/mobile/Library/SBSettings/Commands/jp.r-plus.nlron
+/bin/chown root:wheel /var/mobile/Library/SBSettings/Commands/jp.r-plus.nlroff
+if [ `uname -m` = "iPhone3,1" ]; then
+	cp /var/mobile/Library/SBSettings/Themes/Default/NLR/on_retina.png /var/mobile/Library/SBSettings/Themes/Default/NLR/on.png
+    cp /var/mobile/Library/SBSettings/Themes/Default/NLR/off_retina.png /var/mobile/Library/SBSettings/Themes/Default/NLR/off.png
+	elif [ `uname -m` = "iPod4,1" ];then
+	cp /var/mobile/Library/SBSettings/Themes/Default/NLR/on_retina.png /var/mobile/Library/SBSettings/Themes/Default/NLR/on.png
+    cp /var/mobile/Library/SBSettings/Themes/Default/NLR/off_retina.png /var/mobile/Library/SBSettings/Themes/Default/NLR/off.png
+fi

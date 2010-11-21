@@ -1,0 +1,2 @@
+#!/bin/sh
+/bin/rm /var/mobile/Library/Preferences/jp.r-plus.nlr.plist
