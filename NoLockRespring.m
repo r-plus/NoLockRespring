@@ -21,7 +21,8 @@ BOOL isEnabled()
 	//BOOL sbEnabled = [[plistDictSB objectForKey:@"SBLanguageRestart"] boolValue];
 	
 	if (nlrEnabled){
-			notify_post("jp.r-plus.nlron");
+		[NSThread sleepForTimeInterval:0.1];
+		notify_post("jp.r-plus.nlron");		
 	}
 	
 	return nlrEnabled;
@@ -33,7 +34,10 @@ BOOL isEnabled()
 // showing of the sbsettings window. Imagine 12 slow toggles trying to refresh tate on show.
 BOOL getStateFast()
 {
-	return isEnabled();
+	NSDictionary *plistDictNlr = [NSDictionary dictionaryWithContentsOfFile:@"/var/mobile/Library/Preferences/jp.r-plus.nlr.plist"];
+	BOOL nlrEnabled = [[plistDictNlr objectForKey:@"Enabled"] boolValue];
+	
+	return nlrEnabled;
 }
 
 // Pass in state to set. YES for enable, NO to disable.
@@ -43,7 +47,7 @@ void setState(BOOL Enable)
 	NSDictionary *plistDictNlr = [NSDictionary dictionaryWithContentsOfFile:@"/var/mobile/Library/Preferences/jp.r-plus.nlr.plist"];
 	//NSDictionary *plistDictSB = [NSDictionary dictionaryWithContentsOfFile:@"/var/mobile/Library/Preferences/com.apple.springboard.plist"];
 	
-	if (Enable == YES)
+	if (Enable)
 	{
 		[plistDictNlr setValue:[NSNumber numberWithBool:YES] forKey:@"Enabled"];
 		[plistDictNlr writeToFile:@"/var/mobile/Library/Preferences/jp.r-plus.nlr.plist" atomically: YES];
@@ -51,7 +55,7 @@ void setState(BOOL Enable)
 		//[plistDictSB setValue:[NSNumber numberWithBool:YES] forKey:@"SBLanguageRestart"];
 		//[plistDictSB writeToFile:@"/var/mobile/Library/Preferences/com.apple.springboard.plist" atomically: YES];
 	}
-	else if (Enable == NO) 
+	else
 	{
 		[plistDictNlr setValue:[NSNumber numberWithBool:NO] forKey:@"Enabled"];
 		[plistDictNlr writeToFile:@"/var/mobile/Library/Preferences/jp.r-plus.nlr.plist" atomically: YES];

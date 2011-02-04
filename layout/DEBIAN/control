@@ -1,9 +1,9 @@
 Package: jp.r-plus.nolockrespring
 Name: NoLockRespring Toggle
 Depends: sbsettings,com.ericasadun.utilities
-Version: 0.1
+Version: 0.1.1
 Architecture: iphoneos-arm
-Description: No show Lockscreen after respring/reboot.
+Description: No LockScreen after respring/reboot.
 Homepage:
 Depiction:
 Maintainer: BigBoss <bigboss@thebigboss.org>
